@@ -32,12 +32,15 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
               >
                 Logout
               </button>
-              <span className="mx-5">|</span>
-              <button className="hover:underline hover:text-blue-500">
-                {linkTree.length !== 0 && (
-                  <Link to={`/update/${linkTree[0].authorId}`}>Update</Link>
-                )}
-              </button>
+              {linkTree.length !== 0 && (
+                <>
+                  {" "}
+                  <span className="mx-5">|</span>
+                  <button className="hover:underline hover:text-blue-500">
+                    <Link to={`/update/${linkTree[0].authorId}`}>Update</Link>
+                  </button>
+                </>
+              )}
             </div>
             <div>
               {isLoading ? (

@@ -25,15 +25,25 @@ function Form({ setIsUpdate }) {
   };
 
   const submitForm = () => {
-    createLinkTree();
-    // You can process the form data here (e.g., send it to a server)
-    console.log({
-      profileName,
-      profilePicture,
-      bio,
-      position,
-      links,
-    });
+    if (
+      profileName === "" ||
+      bio === "" ||
+      position === "" ||
+      links.length === 0
+    ) {
+      alert("please fill the the required information to create link tree");
+    } else {
+      createLinkTree();
+      // You can process the form data here (e.g., send it to a server)
+      console.log({
+        profileName,
+        profilePicture,
+        bio,
+        position,
+        links,
+      });
+
+    }
   };
 
   const postCollectionRef = collection(db, "linkTrees");
@@ -45,7 +55,7 @@ function Form({ setIsUpdate }) {
       links,
       authorId: auth.currentUser.uid,
     });
-    // window.location.href = "/";
+    window.location.href = "/";
     console.log("post added");
     setIsUpdate((prev) => !prev);
   };
@@ -109,7 +119,10 @@ function Form({ setIsUpdate }) {
             </div>
           ))}
         </div>
-        <button onClick={addLink} className=" bg-accent text-white py-1 rounded-full mb-3">
+        <button
+          onClick={addLink}
+          className=" bg-accent text-white py-1 rounded-full mb-3"
+        >
           Add Link
         </button>
         <button onClick={submitForm} className="btn btn-sm">

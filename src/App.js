@@ -36,7 +36,7 @@ const App = () => {
     };
     getPosts();
     console.log("postList", postList);
-  }, [isUpdate, linkTree, postList]);
+  });
 
   return (
     <Router>

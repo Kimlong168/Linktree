@@ -5,10 +5,15 @@ import OtpInput from "otp-input-react";
 import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { auth } from "../firebase.config";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { auth,provider } from "../firebase.config";
+import {
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  signInWithPopup,
+} from "firebase/auth";
 import { toast, Toaster } from "react-hot-toast";
-const App = ({ setIsAuth ,isAuth}) => {
+import ContinueWithGoogle from "../components/ContinueWithGoogle";
+const App = ({ setIsAuth, isAuth }) => {
   const [otp, setOtp] = useState("");
   const [ph, setPh] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,10 +21,19 @@ const App = ({ setIsAuth ,isAuth}) => {
   const [user, setUser] = useState(null);
   let navigate = useNavigate();
 
-  if(isAuth){
+  if (isAuth) {
     navigate("/");
     return null;
   }
+
+  const signIn = () => {
+    signInWithPopup(auth, provider).then((result) => {
+      console.log("login successfully");
+      localStorage.setItem("isAuth", true);
+      setIsAuth(true);
+      navigate("/");
+    });
+  };
 
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
@@ -81,7 +95,7 @@ const App = ({ setIsAuth ,isAuth}) => {
   }
 
   return (
-    <section className=" flex items-center justify-center h-screen bg-site">
+    <section className=" flex flex-col items-center justify-center h-screen bg-site">
       <div>
         <Toaster toastOptions={{ duration: 4000 }} />
         <div id="recaptcha-container"></div>
@@ -92,7 +106,8 @@ const App = ({ setIsAuth ,isAuth}) => {
         ) : (
           <div className="w-100 flex flex-col gap-4  p-8 rounded-3xl border border-white/30">
             <h1 className="text-center leading-normal  font-bold text-4xl mb-6 text-accent uppercase">
-              Welcome to Kimlong<br /> Link Tree
+              Welcome to Kimlong
+              <br /> Link Tree
             </h1>
             {showOTP ? (
               <>
@@ -143,12 +158,16 @@ const App = ({ setIsAuth ,isAuth}) => {
                   {loading && (
                     <CgSpinner size={20} className="mt-1 animate-spin" />
                   )}
-                  <span >Send code via SMS</span>
+                  <span>Send code via SMS</span>
                 </button>
               </>
             )}
           </div>
         )}
+      </div>
+      <div className="mb-5">
+        <div className="text-center mt-5 text-white">-------or------- </div>
+        <ContinueWithGoogle signIn={signIn} />
       </div>
     </section>
   );
