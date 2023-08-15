@@ -34,7 +34,7 @@ const ContinueWithGoogle = ({ signIn }) => {
               fill="#EB4335"
             />
           </svg>
-          <p className="text-base font-medium ml-4 text-gray-700">
+          <p className="text-base font-medium ml-4 text-white">
             Continue with Google
           </p>
         </button>

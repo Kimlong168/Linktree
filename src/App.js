@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import CreateLinkTree from "./pages/CreateLinkTree";
 import Error404 from "./pages/Error404";
 import UpdateLinkTree from "./pages/UpdateLinkTree";
+
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   const [isUpdate, setIsUpdate] = useState(false);
@@ -36,7 +37,8 @@ const App = () => {
     };
     getPosts();
     console.log("postList", postList);
-  });
+    console.log("linkTree", linkTree);
+  },[isUpdate]);
 
   return (
     <Router>

@@ -95,8 +95,8 @@ const App = ({ setIsAuth, isAuth }) => {
   }
 
   return (
-    <section className=" flex flex-col items-center justify-center h-screen bg-site">
-      <div>
+    <section className=" flex flex-col items-center justify-center min-h-screen bg-site py-10">
+      <div >
         <Toaster toastOptions={{ duration: 4000 }} />
         <div id="recaptcha-container"></div>
         {user ? (
@@ -104,7 +104,8 @@ const App = ({ setIsAuth, isAuth }) => {
             👍Login Success
           </h2>
         ) : (
-          <div className="w-100 flex flex-col gap-4  p-8 rounded-3xl border border-white/30">
+          <div className=" border border-white/30 rounded-3xl">
+          <div className="w-100 flex flex-col gap-4  p-8 rounded-3xl">
             <h1 className="text-center leading-normal  font-bold text-4xl mb-6 text-accent uppercase">
               Welcome to Kimlong
               <br /> Link Tree
@@ -163,12 +164,14 @@ const App = ({ setIsAuth, isAuth }) => {
               </>
             )}
           </div>
+            <div className="mb-5">
+            <div className="text-center mt-5 text-white">---------or---------</div>
+            <ContinueWithGoogle signIn={signIn} />
+          </div>
+          </div>
         )}
       </div>
-      <div className="mb-5">
-        <div className="text-center mt-5 text-white">-------or------- </div>
-        <ContinueWithGoogle signIn={signIn} />
-      </div>
+    
     </section>
   );
 };
