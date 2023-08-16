@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LinkTreeWrapper from "../components/LinkTreeWrapper";
-import Form from "../components/Form";
-import { auth } from "../firebase.config";
 import SharingButton from "../components/SharingButton";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import Loading from "../components/Loading";
 import Contact from "../components/Contact";
 import logo from "../assets/logo.png";
+import QrCodeLink from "../components/QrCodeLink";
 const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   const [copy, setCopy] = useState(false);
   const [isLoading, setIsloading] = useState(true);
@@ -80,6 +79,13 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
                           </span>
                         </CopyToClipboard>
                       </div>
+                      <QrCodeLink
+                        url={
+                          window.location.origin +
+                          `/profile/${linkTree[0].authorId}`
+                        }
+                        name={linkTree[0].profileName}
+                      />
                       <SharingButton
                         url={
                           window.location.origin +
@@ -90,8 +96,12 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
                     </>
                   ) : (
                     <div className="grid place-content-center p-8">
-                      <h1 className="text-gradient text-3xl mb-3">Have you created a Link tree yet? </h1>
-                      <div className="mb-5 text-white">If you have created already, please wait...</div>
+                      <h1 className="text-gradient text-3xl mb-3">
+                        Have you created a Link tree yet?{" "}
+                      </h1>
+                      <div className="mb-5 text-white">
+                        If you have created already, please wait...
+                      </div>
                       <Link to="/create">
                         <button className="btn btn-sm">
                           Create your link tree

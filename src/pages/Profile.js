@@ -7,21 +7,25 @@ import SharingButton from "../components/SharingButton";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
+import QrCodeLink from "../components/QrCodeLink";
+
 const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
   const [copy, setCopy] = useState(false);
+
   const { id } = useParams();
 
   const linkTree = postList.filter((post) => id === post.authorId);
   if (linkTree.length === 0) {
     return <Loading />;
   }
+
   return (
     <main className="bg-site">
       <div className="bg-errorPage bg-bottom bg-no-repeat bg-fixed bg-cover h-full px-2">
         <nav>
           {isAuth && id === auth.currentUser.uid && (
             <>
-              <div className="flex justify-center md:justify-end w-full p-5">
+              <div className="flex justify-center md:justify-end w-full p-5 text-accent">
                 <button
                   onClick={signUserOut}
                   className="hover:underline hover:text-blue-500"
@@ -50,6 +54,7 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
           ) : (
             <>
               <LinkTreeWrapper linkTree={linkTree} />
+              {/* copy clipboard */}
               <div className="flex justify-center ">
                 <CopyToClipboard
                   text={window.location.href}
@@ -75,6 +80,14 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
                   </span>
                 </CopyToClipboard>
               </div>
+
+              {/* qrcode downloader */}
+              <QrCodeLink
+                url={window.location.href}
+                name={linkTree[0].profileName}
+              />
+
+              {/* sharing link icons */}
               <SharingButton
                 url={window.location.href}
                 title={linkTree[0].profileName}
@@ -89,6 +102,7 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
                   </button>
                 </div>
               )}
+
               {isAuth && id !== auth.currentUser.uid && (
                 <>
                   <div className="mt-5 pb-5 grid place-content-center">
