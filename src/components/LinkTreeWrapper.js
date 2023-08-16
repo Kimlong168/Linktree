@@ -12,10 +12,10 @@ const LinkTreeWrapper = ({ linkTree }) => {
   return (
     <div className="mx-auto py-10">
       {/* {element} */}
-      <div className="mx-auto mb-5 max-w-sm flex-col rounded-3xl border-4 border-t-8 border-yellow-400 bg-black/50  px-4 py-10 text-white shadow-2xl">
+      <div className="mx-auto mb-5 max-w-sm flex-col rounded-3xl border-4 border-t-8 border-blue-400 bg-black/50  px-4 py-10 text-white shadow-2xl">
         <div className="text-center">
           <img
-            className="rounded-full mx-auto block border-2 border-transparent  hover:border-yellow-400"
+            className="rounded-full mx-auto block border-2 border-transparent  hover:border-blue-400"
             alt="pic"
             src={
               linkTree[0].profilePicture

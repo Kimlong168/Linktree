@@ -4,13 +4,13 @@ const LinkBox = ({ title, url }) => {
   return (
     <div>
       <a href={url}>
-        <div className="my-2 flex h-16 items-center justify-between rounded-lg border-2 border-b-4 border-l-4 border-yellow-300 px-4 shadow-xl">
+        <div className="my-2 flex h-16 items-center justify-between rounded-lg border-2 border-b-4 border-l-4 border-blue-300 px-4 shadow-xl">
           <div className="flex items-center">
-            <img
+            {/* <img
               alt="photo1"
               className="w-10 rounded-full"
               src="https://icon-library.com/images/2018/2298785_oreos-oreo-cookie-adult-costume-hd-png-download.png"
-            />
+            /> */}
             <div className="ml-5">
               <div className="text-md font-semibold">{title}</div>
               {/* <div className="flex mt-1 text-xs font-light text-gray-600">
