@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../components/Form";
 const CreateLinkTree = () => {
   return (
-    <div  className="h-screen">
+    <div  className="min-h-screen bg-site ">
       <Form />
     </div>
   );

@@ -3,6 +3,7 @@ import { FaGlobe,FaPhone,FaGithub,FaTelegram ,FaTwitter, FaFacebook, FaInstagram
 import { SiGoogle } from 'react-icons/si';
 import { MdMailOutline } from 'react-icons/md';
 import { RiCloseCircleLine } from 'react-icons/ri'; 
+
 const IconSelector = ({ title }) => {
   const lowerCaseTitle = title.toLowerCase();
   const iconMapping = {

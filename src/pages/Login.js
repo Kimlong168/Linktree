@@ -5,7 +5,8 @@ import OtpInput from "otp-input-react";
 import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { auth,provider } from "../firebase.config";
+import { auth, provider } from "../firebase.config";
+import logo from "../assets/logo.png";
 import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
@@ -95,84 +96,89 @@ const App = ({ setIsAuth, isAuth }) => {
   }
 
   return (
-    <section className=" flex flex-col items-center justify-center min-h-screen bg-site py-10">
-      <div >
-        <Toaster toastOptions={{ duration: 4000 }} />
-        <div id="recaptcha-container"></div>
-        {user ? (
-          <h2 className="text-center text-white font-medium text-2xl">
-            👍Login Success
-          </h2>
-        ) : (
-          <div className=" border border-white/30 rounded-3xl">
-          <div className="w-100 flex flex-col gap-4  p-8 rounded-3xl">
-            <h1 className="text-center leading-normal  font-bold text-4xl mb-6 text-accent uppercase">
-              Welcome to Kimlong
-              <br /> Link Tree
-            </h1>
-            {showOTP ? (
-              <>
-                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                  <BsFillShieldLockFill size={30} />
+    <div className="bg-site">
+      <section className=" flex flex-col items-center justify-center min-h-screen bg-errorPage bg-fixed bg-cover bg-bottom py-10">
+        <div className="px-5  w-full md:w-auto">
+          <Toaster toastOptions={{ duration: 4000 }} />
+          <div id="recaptcha-container"></div>
+          {user ? (
+            <h2 className="text-center text-white font-medium text-2xl">
+              👍Login Success
+            </h2>
+          ) : (
+            <div className=" border border-white/30 rounded-3xl">
+              <div className="w-100 flex flex-col gap-4  p-8 rounded-3xl">
+                <div>
+                  <img src={logo} alt="logo" />
                 </div>
-                <label
-                  htmlFor="otp"
-                  className="font-bold text-xl text-white text-center"
-                >
-                  Enter your OTP
-                </label>
-                <OtpInput
-                  value={otp}
-                  onChange={setOtp}
-                  OTPLength={6}
-                  otpType="number"
-                  disabled={false}
-                  autoFocus
-                  className="opt-container text-black"
-                ></OtpInput>
-                <button
-                  onClick={onOTPVerify}
-                  className="btn btn-sm w-full flex gap-1 items-center justify-center"
-                >
-                  {loading && (
-                    <CgSpinner size={20} className="mt-1 animate-spin" />
-                  )}
-                  <span>Verify OTP</span>
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="btn btn-sm w-fit mx-auto grid place-content-center">
-                  <BsTelephoneFill size={30} />
+                <h1 className="text-center leading-normal  font-bold text-4xl mb-6 text-blue-400 uppercase">
+                  Login
+                </h1>
+                {showOTP ? (
+                  <>
+                    <div className="bg-white text-blue-400 w-fit mx-auto rounded-full">
+                      <BsFillShieldLockFill size={30} />
+                    </div>
+                    <label
+                      htmlFor="otp"
+                      className="font-bold text-xl text-white text-center"
+                    >
+                      Enter your OTP
+                    </label>
+                    <OtpInput
+                      value={otp}
+                      onChange={setOtp}
+                      OTPLength={6}
+                      otpType="number"
+                      disabled={false}
+                      autoFocus
+                      className="opt-container text-black"
+                    ></OtpInput>
+                    <button
+                      onClick={onOTPVerify}
+                      className="btn btn-sm w-full flex gap-1 items-center justify-center"
+                    >
+                      {loading && (
+                        <CgSpinner size={20} className="mt-1 animate-spin" />
+                      )}
+                      <span>Verify OTP</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <div className="bg-white text-blue-400 w-fit mx-auto rounded-full p-4">
+                      <BsTelephoneFill size={30} />
+                    </div>
+                    <label
+                      htmlFor=""
+                      className="font-bold text-xl text-white text-center"
+                    >
+                      Verify your phone number
+                    </label>
+                    <PhoneInput country={"kh"} value={ph} onChange={setPh} />
+                    <button
+                      onClick={onSignup}
+                      className="btn btn-sm w-full flex gap-1 items-center justify-center "
+                    >
+                      {loading && (
+                        <CgSpinner size={20} className="mt-1 animate-spin" />
+                      )}
+                      <span>Send code via SMS</span>
+                    </button>
+                  </>
+                )}
+              </div>
+              <div className="mb-5">
+                <div className="text-center mt-5 text-white">
+                  ---------or---------
                 </div>
-                <label
-                  htmlFor=""
-                  className="font-bold text-xl text-white text-center"
-                >
-                  Verify your phone number
-                </label>
-                <PhoneInput country={"kh"} value={ph} onChange={setPh} />
-                <button
-                  onClick={onSignup}
-                  className="btn btn-sm w-full flex gap-1 items-center justify-center "
-                >
-                  {loading && (
-                    <CgSpinner size={20} className="mt-1 animate-spin" />
-                  )}
-                  <span>Send code via SMS</span>
-                </button>
-              </>
-            )}
-          </div>
-            <div className="mb-5">
-            <div className="text-center mt-5 text-white">---------or---------</div>
-            <ContinueWithGoogle signIn={signIn} />
-          </div>
-          </div>
-        )}
-      </div>
-    
-    </section>
+                <ContinueWithGoogle signIn={signIn} />
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
 

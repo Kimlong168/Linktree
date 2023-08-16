@@ -8,6 +8,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import Loading from "../components/Loading";
 import Contact from "../components/Contact";
+import logo from "../assets/logo.png";
 const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   const [copy, setCopy] = useState(false);
   const [isLoading, setIsloading] = useState(true);
@@ -21,8 +22,8 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   console.log("lll", linkTree.length);
 
   return (
-    <div className="bg-site">
-      <nav>
+  <div className="bg-site">
+      <nav className="bg-errorPage bg-fixed bg-no-repeat bg-cover bg-bottom error-bg pb-5 px-2">
         {isAuth ? (
           <>
             <div className="flex  text-accent  justify-center md:justify-end w-full p-5">
@@ -96,15 +97,20 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
           </>
         ) : (
           <>
-            <div className="h-screen grid place-content-center px-3">
-              <div class="text-4xl lg:text-6xl text-gradient mb-20 text-center py-5 uppercase">
+            <div className="min-h-screen bg-errorPage bg-fixed bg-cover bg-bottom p-8">
+              <div className="pb-0">
+                <img src={logo} alt="logo" />
+              </div>
+              <div class="text-4xl lg:text-6xl text-gradient mb-20 text-center py-5 uppercase flex gap-3">
                 Welcome to Kimlong Link Tree
               </div>
-              <button className=" btn btn-sm mb-10 ">
-                <Link to="/login">
-                  Register or Login to create your own link tree
-                </Link>
-              </button>
+              <div>
+                <button className="px-5 py-2 rounded-full text-yellow-400 border border-yellow-400 mb-10">
+                  <Link to="/login">
+                    Register or Login to create your own link tree
+                  </Link>
+                </button>
+              </div>
               <Contact />
             </div>
           </>

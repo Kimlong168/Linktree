@@ -8,7 +8,7 @@ const ContinueWithGoogle = ({ signIn }) => {
           onClick={signIn}
           aria-label="Continue with google"
           role="button"
-          className="mx-auto focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center  mt-10"
+          className="mx-auto focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-white/50 flex items-center  mt-10"
         >
           <svg
             width="19"
