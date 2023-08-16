@@ -53,7 +53,7 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
             </>
           ) : (
             <>
-              <LinkTreeWrapper linkTree={linkTree} />
+               <LinkTreeWrapper linkTree={linkTree} userImageId={linkTree[0].authorId} />
               {/* copy clipboard */}
               <div className="flex justify-center ">
                 <CopyToClipboard

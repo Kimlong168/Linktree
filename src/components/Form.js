@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase.config";
+import { storage } from "../firebase.config";
+import {ref, uploadBytes} from "firebase/storage"
 function Form({ setIsUpdate }) {
   const [profileName, setProfileName] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
   const [bio, setBio] = useState("");
   const [position, setPosition] = useState("");
   const [links, setLinks] = useState([
@@ -29,11 +31,19 @@ function Form({ setIsUpdate }) {
       profileName === "" ||
       bio === "" ||
       position === "" ||
-      links.length === 0
+      links.length === 0 ||
+      profilePicture === null
+
     ) {
       alert("please fill the the required information to create link tree");
     } else {
       createLinkTree();
+
+      const imageRef = ref(storage,`images/${auth.currentUser.uid}`);
+      uploadBytes(imageRef,profilePicture).then(()=>{
+        console.log("image uploaded");
+      });
+
       // You can process the form data here (e.g., send it to a server)
       console.log({
         profileName,
@@ -42,7 +52,6 @@ function Form({ setIsUpdate }) {
         position,
         links,
       });
-   
     }
   };
   let navigate = useNavigate();
@@ -82,12 +91,20 @@ function Form({ setIsUpdate }) {
           onChange={(e) => setPosition(e.target.value)}
         />
 
-        <label className="font-bold">Profile Picture URL:</label>
+        {/* <label className="font-bold">Profile Picture URL:</label>
         <input
           className="border px-2 py-1 border-blue-600 outline-none rounded"
           type="text"
           value={profilePicture}
           onChange={(e) => setProfilePicture(e.target.value)}
+        /> */}
+
+        <label className="font-bold">Profile Picture:</label>
+        <input
+          className="border px-2 py-1 border-blue-600 outline-none rounded"
+          type="file"
+          value={profilePicture}
+          onChange={(e) => setProfilePicture(e.target.files[0])}
         />
 
         <label className="font-bold">Bio:</label>

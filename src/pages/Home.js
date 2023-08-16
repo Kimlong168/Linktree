@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import Contact from "../components/Contact";
 import logo from "../assets/logo.png";
 import QrCodeLink from "../components/QrCodeLink";
+import {auth} from "../firebase.config"
 const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   const [copy, setCopy] = useState(false);
   const [isLoading, setIsloading] = useState(true);
@@ -50,7 +51,7 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
                 <>
                   {linkTree.length !== 0 ? (
                     <>
-                      <LinkTreeWrapper linkTree={linkTree} />
+                      <LinkTreeWrapper linkTree={linkTree} userImageId={auth.currentUser.uid} />
                       <div className="flex justify-center ">
                         <CopyToClipboard
                           text={

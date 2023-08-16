@@ -2,7 +2,8 @@ import React from "react";
 import { auth } from "../firebase.config";
 import LinkBox from "./LinkBox";
 import Form from "./Form";
-const LinkTreeWrapper = ({ linkTree }) => {
+import ProfileImage from "./ProfileImage";
+const LinkTreeWrapper = ({ linkTree , userImageId}) => {
   // const linkTree = linkTrees.filter(
   //   (post) => auth.currentUser.uid === post.authorId
   // )[0];
@@ -14,7 +15,7 @@ const LinkTreeWrapper = ({ linkTree }) => {
       {/* {element} */}
       <div className="mx-auto mb-5 max-w-sm flex-col rounded-3xl border-4 border-t-8 border-blue-400 bg-black/50  px-4 py-10 text-white shadow-2xl">
         <div className="text-center ">
-          <div className="cursor-pointer rounded-full border-4 border-blue-400 overflow-hidden w-[210px] h-[210px] mx-auto">
+          {/* <div className="cursor-pointer rounded-full border-4 border-blue-400 overflow-hidden w-[210px] h-[210px] mx-auto">
             <img
               className="w-full h-full rounded-full object-fit mx-auto block border-2 borderr-transparent border-transparent  transition-all hover:scale-125"
               alt="pic"
@@ -24,7 +25,8 @@ const LinkTreeWrapper = ({ linkTree }) => {
                   : "https://i.ibb.co/4mWnBWV/AREmoji-20220303-153534-12754.png"
               }
             />
-          </div>
+          </div> */}
+          <ProfileImage userImageId={userImageId}/>
 
           <p className="pt-2 text-2xl mt-2 uppercase font-bold text-gradient">
             {linkTree[0].profileName}

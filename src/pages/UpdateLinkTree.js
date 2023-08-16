@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
-
+import { storage } from "../firebase.config";
+import { ref, uploadBytes } from "firebase/storage";
 const UpdateLinkTree = ({ postList, setIsUpdate }) => {
   const { id } = useParams();
   const linkTree = postList.filter((post) => post.id === id)[0];
   console.log("update data", linkTree);
   const [profileName, setProfileName] = useState(linkTree.profileName);
-  const [profilePicture, setProfilePicture] = useState(linkTree.profilePicture);
+  const [profilePicture, setProfilePicture] = useState(null);
   const [bio, setBio] = useState(linkTree.bio);
   const [position, setPosition] = useState(linkTree.position);
   const initLinks = [...linkTree.links];
@@ -24,21 +25,38 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
     updatedLinks[index][field] = value;
     setLinks(updatedLinks);
   };
-
+  let navigate = useNavigate();
   const submitForm = () => {
-    updateLinkTree();
-    // You can process the form data here (e.g., send it to a server)
-    console.log("updating", {
-      profileName,
-      profilePicture,
-      bio,
-      position,
-      links,
-    });
-    console.log("user id",auth.currentUser.uid,"id",id);
+    if (
+      profileName === "" ||
+      bio === "" ||
+      position === "" ||
+      links.length === 0
+    ) {
+      alert("please fill the the required information to create link tree");
+    } else {
+      updateLinkTree();
+
+      if (profilePicture !== null) {
+        const imageRef = ref(storage, `images/${auth.currentUser.uid}`);
+        uploadBytes(imageRef, profilePicture).then(() => {
+          console.log("image uploaded");
+        });
+      }
+
+      // You can process the form data here (e.g., send it to a server)
+      console.log("updating", {
+        profileName,
+        profilePicture,
+        bio,
+        position,
+        links,
+      });
+      console.log("user id", auth.currentUser.uid, "id", id);
+      navigate("/");
+    }
   };
 
-  let navigate = useNavigate();
   async function updateLinkTree() {
     const docRef = doc(db, "linkTrees", id);
     await setDoc(
@@ -54,7 +72,6 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
       { merge: true }
     );
 
-    navigate("/");
     setIsUpdate((a) => !a);
     console.log("post updated");
   }
@@ -81,12 +98,18 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
             onChange={(e) => setPosition(e.target.value)}
           />
 
-          <label className="font-bold">Profile Picture URL:</label>
+          {/* <label className="font-bold">Profile Picture URL:</label>
           <input
             className="border px-2 py-1 border-blue-600 outline-none rounded"
             type="text"
             value={profilePicture}
             onChange={(e) => setProfilePicture(e.target.value)}
+          /> */}
+          <label className="font-bold">Profile Picture:</label>
+          <input
+            className="border px-2 py-1 border-blue-600 outline-none rounded"
+            type="file"
+            onChange={(e) => setProfilePicture(e.target.files[0])}
           />
 
           <label className="font-bold">Bio:</label>

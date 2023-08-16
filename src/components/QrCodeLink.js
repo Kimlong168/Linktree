@@ -11,7 +11,7 @@ const QrCodeLink = ({ url, name }) => {
       var a = document.createElement("a");
       a.href = canvas.toDataURL("image/png");
       console.log(a.href, "and", a);
-      a.download = `beat022_qrcode_${name}_${uuidv4()}.png`;
+      a.download = `link_tree_${name}_${uuidv4()}.png`;
       a.click();
     });
   }
