@@ -12,11 +12,11 @@ const LinkTreeWrapper = ({ linkTree }) => {
   return (
     <div className="mx-auto py-10">
       {/* {element} */}
-      <div className="mx-auto mb-5 max-w-sm flex-col rounded-3xl border-4 border-t-8 border-yellow-400 bg-white px-4 py-10 text-black shadow-2xl">
+      <div className="mx-auto mb-5 max-w-sm flex-col rounded-3xl border-4 border-t-8 border-yellow-400 bg-black/50  px-4 py-10 text-white shadow-2xl">
         <div className="text-center">
           <img
-            className="rounded-full"
-            alt="profile pic"
+            className="rounded-full mx-auto block border-2 border-transparent  hover:border-yellow-400"
+            alt="pic"
             src={
               linkTree[0].profilePicture
                 ? `${linkTree[0].profilePicture}`
@@ -24,10 +24,10 @@ const LinkTreeWrapper = ({ linkTree }) => {
             }
           />
 
-          <p className="pt-2 text-lg uppercase font-bold">
+          <p className="pt-2 text-2xl mb-4 mt-2 uppercase font-bold text-gradient">
             {linkTree[0].profileName}
           </p>
-          <p className="text-sm font-medium  text-gray-900">
+          <p className="text-sm font-medium text-white">
             {linkTree[0].position}
           </p>
           <small>{linkTree[0].bio}</small>
@@ -45,12 +45,12 @@ const LinkTreeWrapper = ({ linkTree }) => {
             );
           })
         ) : (
-          <div className="text-center font-extrabold text-black">
+          <div className="text-center font-extrabold text-white">
             No links yet
           </div>
         )}
 
-        <div className="text-center font-extrabold text-black">
+        <div className="text-center font-extrabold text-white">
           &copy; Kimlong
         </div>
         <script

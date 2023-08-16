@@ -11,8 +11,8 @@ const LinkBox = ({ title, url }) => {
               className="w-10 rounded-full"
               src="https://icon-library.com/images/2018/2298785_oreos-oreo-cookie-adult-costume-hd-png-download.png"
             />
-            <div className="ml-2">
-              <div className="text-xs font-semibold">{title}</div>
+            <div className="ml-5">
+              <div className="text-md font-semibold">{title}</div>
               {/* <div className="flex mt-1 text-xs font-light text-gray-600">
                <div className="line-clamp-1 w-full">{url}</div>
                 <svg
