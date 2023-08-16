@@ -50,7 +50,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
         position,
         authorId: auth.currentUser.uid,
       },
-      { merge: true }
+      { merge: false }
     );
 
     navigate("/");
