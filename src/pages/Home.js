@@ -22,7 +22,7 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   console.log("lll", linkTree.length);
 
   return (
-  <div className="bg-site">
+    <div className="bg-site">
       <nav className="bg-errorPage bg-fixed bg-no-repeat bg-cover bg-bottom error-bg pb-5 px-2">
         {isAuth ? (
           <>
@@ -89,7 +89,16 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
                       />
                     </>
                   ) : (
-                    <Form />
+                    <div className="grid place-content-center p-8">
+                      <h1 className="text-gradient text-3xl mb-3">Have you create a Link tree? </h1>
+                      <div className="mb-5 text-white">If you have created, please wait...</div>
+                      <Link to="/create">
+                        <button className="btn btn-sm">
+                          Create your link tree
+                        </button>
+                      </Link>
+                      <Loading />
+                    </div>
                   )}
                 </>
               )}
