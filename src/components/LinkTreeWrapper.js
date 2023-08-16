@@ -24,10 +24,10 @@ const LinkTreeWrapper = ({ linkTree }) => {
             }
           />
 
-          <p className="pt-2 text-2xl mb-4 mt-2 uppercase font-bold text-gradient">
+          <p className="pt-2 text-2xl mt-2 uppercase font-bold text-gradient">
             {linkTree[0].profileName}
           </p>
-          <p className="text-sm font-medium text-white">
+          <p className="text-sm font-medium text-white mb-4">
             {linkTree[0].position}
           </p>
           <small>{linkTree[0].bio}</small>
