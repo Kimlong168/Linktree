@@ -4,16 +4,16 @@ import { setDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 
-const UpdateLinkTree = ({postList}) => {
+const UpdateLinkTree = ({ postList, setIsUpdate }) => {
   const { id } = useParams();
-
-  const linkTree = postList.find((post) => post.id === id);
-
+  const linkTree = postList.filter((post) => post.authorId === id)[0];
+  console.log("update data", linkTree);
   const [profileName, setProfileName] = useState(linkTree.profileName);
   const [profilePicture, setProfilePicture] = useState(linkTree.profilePicture);
   const [bio, setBio] = useState(linkTree.bio);
   const [position, setPosition] = useState(linkTree.position);
-  const [links, setLinks] = useState(linkTree.links);
+  const initLinks = [...linkTree.links];
+  const [links, setLinks] = useState(initLinks);
 
   const addLink = () => {
     setLinks([...links, { title: "", url: "" }]);
@@ -28,7 +28,7 @@ const UpdateLinkTree = ({postList}) => {
   const submitForm = () => {
     updateLinkTree();
     // You can process the form data here (e.g., send it to a server)
-    console.log({
+    console.log("updating", {
       profileName,
       profilePicture,
       bio,
@@ -39,7 +39,7 @@ const UpdateLinkTree = ({postList}) => {
 
   let navigate = useNavigate();
   async function updateLinkTree() {
-    const docRef = doc(db, "posts", id);
+    const docRef = doc(db, "linkTrees", id);
     await setDoc(
       docRef,
       {
@@ -53,9 +53,9 @@ const UpdateLinkTree = ({postList}) => {
     );
 
     navigate("/");
+    setIsUpdate((a) => !a);
     console.log("post updated");
   }
-
 
   return (
     <div>

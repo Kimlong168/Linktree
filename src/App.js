@@ -72,7 +72,7 @@ const App = () => {
         <Route path="/create" element={<CreateLinkTree />} />
         <Route
           path="/update/:id"
-          element={<UpdateLinkTree postList={postList} />}
+          element={<UpdateLinkTree postList={postList} setIsUpdate={setIsUpdate}/>}
         />
         <Route path="*" element={<Error404 />} />
       </Routes>

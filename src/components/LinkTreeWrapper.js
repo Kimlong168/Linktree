@@ -24,15 +24,18 @@ const LinkTreeWrapper = ({ linkTree }) => {
             }
           />
 
-          <p className="pt-2 text-lg font-medium uppercase">{linkTree[0].profileName}</p>
-          <p className="text-sm font-extrabold text-gray-900">
-            {linkTree[0].position}
+          <p className="pt-2 text-lg uppercase font-bold">
+            {linkTree[0].profileName}
+          </p>
+          <p className="text-sm font-medium  text-gray-900">
+            {linkTree[0].position}ddd
           </p>
           <small>{linkTree[0].bio}</small>
         </div>
 
         {linkTree[0].links.length > 0 ? (
           linkTree[0].links.map((link, index) => {
+            if (link.url === "" || link.title === "") return null;
             return (
               <>
                 <div key={index}>
