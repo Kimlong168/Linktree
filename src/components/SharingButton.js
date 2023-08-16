@@ -12,7 +12,7 @@ import {
   const SharingButton = ({ url, title }) => {
     return (
       <div>
-        <div className="font-semibold text-center text-white p-4">Share your this tree</div>
+        <div className="font-semibold text-center text-white p-4">Share this link tree</div>
         <div className="flex gap-2 justify-center p-2">
           <TelegramShareButton url={url} title={`====${title}====`}>
             <TelegramIcon size={32} round={true} />
