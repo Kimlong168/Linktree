@@ -35,6 +35,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
       position,
       links,
     });
+    console.log("user id",auth.currentUser.uid,"id",id);
   };
 
   let navigate = useNavigate();
@@ -48,7 +49,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
         bio,
         links,
         position,
-        authorId: auth.currentUser.uid,
+        authorId: id,
       },
       { merge: false }
     );

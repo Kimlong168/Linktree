@@ -18,8 +18,8 @@ const LinkTreeWrapper = ({ linkTree }) => {
             className="rounded-full"
             alt="profile pic"
             src={
-              linkTree[0].profilePic
-                ? `${linkTree[0].profilePic}`
+              linkTree[0].profilePicture
+                ? `${linkTree[0].profilePicture}`
                 : "https://i.ibb.co/4mWnBWV/AREmoji-20220303-153534-12754.png"
             }
           />
