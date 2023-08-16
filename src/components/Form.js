@@ -52,6 +52,7 @@ function Form({ setIsUpdate }) {
       profileName,
       profilePicture,
       bio,
+      position,
       links,
       authorId: auth.currentUser.uid,
     });

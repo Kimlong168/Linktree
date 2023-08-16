@@ -28,7 +28,7 @@ const LinkTreeWrapper = ({ linkTree }) => {
             {linkTree[0].profileName}
           </p>
           <p className="text-sm font-medium  text-gray-900">
-            {linkTree[0].position}ddd
+            {linkTree[0].position}
           </p>
           <small>{linkTree[0].bio}</small>
         </div>

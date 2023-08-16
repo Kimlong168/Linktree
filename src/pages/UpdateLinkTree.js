@@ -47,6 +47,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
         profilePicture,
         bio,
         links,
+        position,
         authorId: auth.currentUser.uid,
       },
       { merge: true }
