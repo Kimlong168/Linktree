@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const UpdateLinkTree = ({ postList, setIsUpdate }) => {
   const { id } = useParams();
-  const linkTree = postList.filter((post) => post.authorId === id)[0];
+  const linkTree = postList.filter((post) => post.id === id)[0];
   console.log("update data", linkTree);
   const [profileName, setProfileName] = useState(linkTree.profileName);
   const [profilePicture, setProfilePicture] = useState(linkTree.profilePicture);
@@ -49,9 +49,9 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
         bio,
         links,
         position,
-        authorId: id,
+        // authorId: id,
       },
-      { merge: false }
+      { merge: true }
     );
 
     navigate("/");

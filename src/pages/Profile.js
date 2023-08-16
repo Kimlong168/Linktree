@@ -30,7 +30,7 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
                 </button>
                 <span className="mx-5">|</span>
                 <button className="hover:underline hover:text-blue-500">
-                  <Link to={`/update/${linkTree[0].authorId}`}>Update</Link>
+                  <Link to={`/update/${linkTree[0].id}`}>Update</Link>
                 </button>
               </div>
             </>
