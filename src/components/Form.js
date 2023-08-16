@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase.config";
 function Form({ setIsUpdate }) {
@@ -42,9 +42,10 @@ function Form({ setIsUpdate }) {
         position,
         links,
       });
+   
     }
   };
-
+  let navigate = useNavigate();
   const postCollectionRef = collection(db, "linkTrees");
   const createLinkTree = () => {
     addDoc(postCollectionRef, {
@@ -55,9 +56,9 @@ function Form({ setIsUpdate }) {
       links,
       authorId: auth.currentUser.uid,
     });
-    window.location.href = "/";
-    console.log("post added");
     setIsUpdate((prev) => !prev);
+    navigate("/");
+    console.log("post added", auth.currentUser.uid);
   };
 
   return (

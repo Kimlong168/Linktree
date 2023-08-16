@@ -69,7 +69,7 @@ const App = () => {
           path="/login"
           element={<Login setIsAuth={setIsAuth} isAuth={isAuth} />}
         />
-        <Route path="/create" element={<CreateLinkTree />} />
+        <Route path="/create" element={<CreateLinkTree setIsUpdate={setIsUpdate}/>} />
         <Route
           path="/update/:id"
           element={<UpdateLinkTree postList={postList} setIsUpdate={setIsUpdate}/>}

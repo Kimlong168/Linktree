@@ -90,8 +90,8 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
                     </>
                   ) : (
                     <div className="grid place-content-center p-8">
-                      <h1 className="text-gradient text-3xl mb-3">Have you create a Link tree? </h1>
-                      <div className="mb-5 text-white">If you have created, please wait...</div>
+                      <h1 className="text-gradient text-3xl mb-3">Have you created a Link tree yet? </h1>
+                      <div className="mb-5 text-white">If you have created already, please wait...</div>
                       <Link to="/create">
                         <button className="btn btn-sm">
                           Create your link tree
