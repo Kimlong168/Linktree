@@ -8,7 +8,7 @@ import Loading from "../components/Loading";
 import Contact from "../components/Contact";
 import logo from "../assets/logo.png";
 import QrCodeLink from "../components/QrCodeLink";
-import {auth} from "../firebase.config"
+import { auth } from "../firebase.config";
 const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   const [copy, setCopy] = useState(false);
   const [isLoading, setIsloading] = useState(true);
@@ -16,10 +16,10 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
   React.useEffect(() => {
     setTimeout(() => {
       setIsloading(false);
-    }, 1000);
+    }, 2000);
   }, [linkTree]);
 
-  console.log("lll", linkTree.length);
+  console.log("link tree length:", linkTree.length);
 
   return (
     <div className="bg-site">
@@ -45,13 +45,18 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
             <div>
               {isLoading ? (
                 <>
-                  <Loading />
+                  <div>
+                    <Loading />
+                  </div>
                 </>
               ) : (
                 <>
                   {linkTree.length !== 0 ? (
                     <>
-                      <LinkTreeWrapper linkTree={linkTree} userImageId={auth.currentUser.uid} />
+                      <LinkTreeWrapper
+                        linkTree={linkTree}
+                        userImageId={auth.currentUser.uid}
+                      />
                       <div className="flex justify-center ">
                         <CopyToClipboard
                           text={
@@ -96,19 +101,20 @@ const Home = ({ isAuth, signUserOut, linkTree, setIsUpdate }) => {
                       />
                     </>
                   ) : (
-                    <div className="grid place-content-center p-8">
+                    <div className="grid place-content-center p-8 min-h-screen">
                       <h1 className="text-gradient text-3xl mb-3">
                         Have you created a Link tree yet?{" "}
                       </h1>
                       <div className="mb-5 text-white">
-                        If you have created already, please wait...
+                        If you have created already, please wait or refresh the
+                        page...
                       </div>
                       <Link to="/create">
                         <button className="btn btn-sm">
                           Create your link tree
                         </button>
                       </Link>
-                      <Loading />
+                      {/* <Loading /> */}
                     </div>
                   )}
                 </>

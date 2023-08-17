@@ -16,7 +16,13 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
 
   const linkTree = postList.filter((post) => id === post.authorId);
   if (linkTree.length === 0) {
-    return <Loading />;
+    return (
+      <div className="bg-site">
+        <div className=" bg-errorPage bg-bottom bg-cover bg-fixed">
+          <Loading />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -53,7 +59,10 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
             </>
           ) : (
             <>
-               <LinkTreeWrapper linkTree={linkTree} userImageId={linkTree[0].authorId} />
+              <LinkTreeWrapper
+                linkTree={linkTree}
+                userImageId={linkTree[0].authorId}
+              />
               {/* copy clipboard */}
               <div className="flex justify-center ">
                 <CopyToClipboard

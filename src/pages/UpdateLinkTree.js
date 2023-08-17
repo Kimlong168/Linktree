@@ -53,7 +53,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
         links,
       });
       console.log("user id", auth.currentUser.uid, "id", id);
-      navigate("/");
+      navigate(`/profile/${auth.currentUser.uid}`);
     }
   };
 
@@ -63,7 +63,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
       docRef,
       {
         profileName,
-        profilePicture,
+        // profilePicture,
         bio,
         links,
         position,
@@ -121,28 +121,30 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
 
           <h2 className="font-bold">Links to Add</h2>
           <div className="flex flex-col gap-2">
-            {links.map((link, index) => (
-              <div key={index} className="flex gap-2">
-                <input
-                  className="w-full border px-2 py-1 border-blue-600 outline-none rounded"
-                  type="text"
-                  placeholder="Link title"
-                  value={link.title}
-                  onChange={(e) =>
-                    handleLinkChange(index, "title", e.target.value)
-                  }
-                />
-                <input
-                  className="w-full border px-2 py-1 border-blue-600 outline-none rounded"
-                  type="text"
-                  placeholder="URL"
-                  value={link.url}
-                  onChange={(e) =>
-                    handleLinkChange(index, "url", e.target.value)
-                  }
-                />
-              </div>
-            ))}
+            {links.map((link, index) => {
+              return (
+                <div key={index} className="flex gap-2">
+                  <input
+                    className="w-full border px-2 py-1 border-blue-600 outline-none rounded"
+                    type="text"
+                    placeholder="Link title"
+                    value={link.title}
+                    onChange={(e) =>
+                      handleLinkChange(index, "title", e.target.value)
+                    }
+                  />
+                  <input
+                    className="w-full border px-2 py-1 border-blue-600 outline-none rounded"
+                    type="text"
+                    placeholder="URL"
+                    value={link.url}
+                    onChange={(e) =>
+                      handleLinkChange(index, "url", e.target.value)
+                    }
+                  />
+                </div>
+              );
+            })}
           </div>
           <button
             onClick={addLink}

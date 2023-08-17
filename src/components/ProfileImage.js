@@ -12,7 +12,7 @@ const ProfileImage = ({ userImageId }) => {
           if (itemRef.name.includes(userImageId)) {
             setImageUrl(url);
             console.log("url", url);
-            console.log("image name",itemRef.name,"user id",userImageId);
+            console.log("image name", itemRef.name, "user id", userImageId);
           }
         });
       });
@@ -23,8 +23,12 @@ const ProfileImage = ({ userImageId }) => {
     <div className="cursor-pointer rounded-full border-4 border-blue-400 overflow-hidden w-[210px] h-[210px] mx-auto">
       <img
         className="w-full h-full rounded-full object-fit mx-auto block border-2 borderr-transparent border-transparent  transition-all hover:scale-125"
-        alt="pic_profile"
-        src={imageUrl}
+        src={
+          imageUrl
+            ? imageUrl
+            : "https://i.ibb.co/4mWnBWV/AREmoji-20220303-153534-12754.png"
+        }
+        alt=""
       />
     </div>
   );

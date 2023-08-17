@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase.config";
 import { storage } from "../firebase.config";
-import {ref, uploadBytes} from "firebase/storage"
+import { ref, uploadBytes } from "firebase/storage";
 function Form({ setIsUpdate }) {
   const [profileName, setProfileName] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
@@ -33,17 +33,9 @@ function Form({ setIsUpdate }) {
       position === "" ||
       links.length === 0 ||
       profilePicture === null
-
     ) {
       alert("please fill the the required information to create link tree");
     } else {
-      createLinkTree();
-
-      const imageRef = ref(storage,`images/${auth.currentUser.uid}`);
-      uploadBytes(imageRef,profilePicture).then(()=>{
-        console.log("image uploaded");
-      });
-
       // You can process the form data here (e.g., send it to a server)
       console.log({
         profileName,
@@ -52,6 +44,15 @@ function Form({ setIsUpdate }) {
         position,
         links,
       });
+      createLinkTree();
+
+      const imageRef = ref(storage, `images/${auth.currentUser.uid}`);
+      uploadBytes(imageRef, profilePicture).then(() => {
+        console.log("image uploaded");
+      });
+
+      // navigate("/");
+      navigate(`/profile/${auth.currentUser.uid}`);
     }
   };
   let navigate = useNavigate();
@@ -59,14 +60,14 @@ function Form({ setIsUpdate }) {
   const createLinkTree = () => {
     addDoc(postCollectionRef, {
       profileName,
-      profilePicture,
+      // profilePicture,
       bio,
       position,
       links,
       authorId: auth.currentUser.uid,
     });
     setIsUpdate((prev) => !prev);
-    navigate("/");
+
     console.log("post added", auth.currentUser.uid);
   };
 
@@ -103,7 +104,6 @@ function Form({ setIsUpdate }) {
         <input
           className="border px-2 py-1 border-blue-600 outline-none rounded"
           type="file"
-          value={profilePicture}
           onChange={(e) => setProfilePicture(e.target.files[0])}
         />
 
