@@ -77,7 +77,7 @@ function Form({ setIsUpdate }) {
   };
 
   return (
-    <div className="bg-errorPage bg-no-repeat bg-cover bg-fixed bg-bottom py-10">
+    <div className="bg-errorPage bg-no-repeat bg-cover bg-fixed bg-bottom py-10 ">
       <div className="mx-3  lg:mx-auto w-100 lg:w-[500px] flex flex-col gap-3 border border-white/50 rounded-3xl p-8">
         <h1 className="text-3xl text-center text-yellow-500 font-bold mb-5 uppercase">
           Linktree Profile Setup
@@ -139,13 +139,15 @@ function Form({ setIsUpdate }) {
                 value={link.url}
                 onChange={(e) => handleLinkChange(index, "url", e.target.value)}
               />
-              <button
-                className="text-gradient"
-                title="remove link"
-                onClick={() => removeLink(index)}
-              >
-                ✖️
-              </button>
+              {links.length > 1 && (
+                <button
+                  className="text-gradient"
+                  title="remove link"
+                  onClick={() => removeLink(index)}
+                >
+                  ✖️
+                </button>
+              )}
             </div>
           ))}
         </div>

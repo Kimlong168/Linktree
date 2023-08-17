@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { storage } from "../firebase.config";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-
+import avatar from "../assets/avatar.jpg"
 const ProfileImage = ({ userImageId }) => {
   const imageRef = ref(storage, `images/`);
-  const [imageUrl, setImageUrl] = React.useState("null");
+  const [imageUrl, setImageUrl] = React.useState(null);
   useEffect(() => {
     listAll(imageRef).then((res) => {
       res.items.forEach((itemRef) => {
@@ -26,9 +26,9 @@ const ProfileImage = ({ userImageId }) => {
         src={
           imageUrl
             ? imageUrl
-            : "https://i.ibb.co/4mWnBWV/AREmoji-20220303-153534-12754.png"
+            : avatar
         }
-        alt=""
+        alt="profile_image"
       />
     </div>
   );

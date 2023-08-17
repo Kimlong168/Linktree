@@ -5,6 +5,7 @@ import { db, auth } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../firebase.config";
 import { ref, uploadBytes } from "firebase/storage";
+import { Link } from "react-router-dom";
 const UpdateLinkTree = ({ postList, setIsUpdate }) => {
   const { id } = useParams();
   const linkTree = postList.filter((post) => post.id === id)[0];
@@ -82,8 +83,8 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
   }
 
   return (
-    <div className="bg-site">
-      <div className="bg-errorPage bg-no-repeat bg-cover bg-bottom bg-fixed py-10">
+    <div className="bg-site ">
+      <div className="relative bg-errorPage bg-no-repeat bg-cover bg-bottom bg-fixed py-10">
         <div className="mx-3 lg:mx-auto  w-100 lg:w-[500px] flex flex-col gap-3 border border-white/50 rounded-3xl p-8">
           <h1 className="text-3xl text-center text-yellow-500 font-bold uppercase mb-5">
             Linktree Profile Update
@@ -147,13 +148,15 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
                       handleLinkChange(index, "url", e.target.value)
                     }
                   />
-                  <button
-                    className="text-gradient"
-                    title="remove link"
-                    onClick={() => removeLink(index)}
-                  >
-                    ✖️
-                  </button>
+                  {links.length > 1 && (
+                    <button
+                      className="text-gradient"
+                      title="remove link"
+                      onClick={() => removeLink(index)}
+                    >
+                      ✖️
+                    </button>
+                  )}
                 </div>
               );
             })}
@@ -168,6 +171,14 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
             Update
           </button>
         </div>
+      </div>
+      {/* back button */}
+      <div className="absolute top-5 left-5">
+        <Link to={`/profile/${auth.currentUser.uid}`}>
+          <button className="bg-white/50 px-2 py-1 text-yellow-400 font-semibold rounded-full">
+            ◀️Back
+          </button>
+        </Link>
       </div>
     </div>
   );
