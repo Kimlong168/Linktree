@@ -20,6 +20,11 @@ function Form({ setIsUpdate }) {
     setLinks([...links, { title: "", url: "" }]);
   };
 
+  const removeLink = (index) => {
+    const updatedLinks = links.filter((_, i) => i !== index);
+    setLinks(updatedLinks);
+  };
+
   const handleLinkChange = (index, field, value) => {
     const updatedLinks = [...links];
     updatedLinks[index][field] = value;
@@ -72,54 +77,54 @@ function Form({ setIsUpdate }) {
   };
 
   return (
-    <div className="bg-errorPage bg-no-repeat bg-bottom py-10">
-      <div className="mx-3  lg:mx-auto w-100 lg:w-[500px] flex flex-col gap-3 border border-white/30 text-accent rounded-3xl p-8">
-        <h1 className="text-3xl text-center text-yellow-400 font-bold mb-5">
+    <div className="bg-errorPage bg-no-repeat bg-cover bg-fixed bg-bottom py-10">
+      <div className="mx-3  lg:mx-auto w-100 lg:w-[500px] flex flex-col gap-3 border border-white/50 rounded-3xl p-8">
+        <h1 className="text-3xl text-center text-yellow-500 font-bold mb-5 uppercase">
           Linktree Profile Setup
         </h1>
         <label className="font-bold text-accent">Profile Name:</label>
         <input
-          className="border px-2 py-1 border-blue-600 outline-none rounded"
+          className="border px-2 py-1 border-yellow-400 outline-none rounded"
           type="text"
           value={profileName}
           onChange={(e) => setProfileName(e.target.value)}
         />
-        <label className="font-bold">Your Position:</label>
+        <label className="font-bold text-accent">Your Position:</label>
         <input
-          className="border px-2 py-1 border-blue-600 outline-none rounded"
+          className="border px-2 py-1 border-yellow-400 outline-none rounded"
           type="text"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
         />
 
-        {/* <label className="font-bold">Profile Picture URL:</label>
+        {/* <label className="font-bold text-accent">Profile Picture URL:</label>
         <input
-          className="border px-2 py-1 border-blue-600 outline-none rounded"
+          className="border px-2 py-1 border-yellow-400 outline-none rounded"
           type="text"
           value={profilePicture}
           onChange={(e) => setProfilePicture(e.target.value)}
         /> */}
 
-        <label className="font-bold">Profile Picture:</label>
+        <label className="font-bold text-accent">Profile Picture:</label>
         <input
-          className="border px-2 py-1 border-blue-600 outline-none rounded"
+          className="border px-2 py-1 border-yellow-400 outline-none rounded"
           type="file"
           onChange={(e) => setProfilePicture(e.target.files[0])}
         />
 
-        <label className="font-bold">Bio:</label>
+        <label className="font-bold text-accent">Bio:</label>
         <textarea
           value={bio}
           onChange={(e) => setBio(e.target.value)}
-          className="border px-2 py-1 border-blue-600 outline-none rounded"
+          className="border px-2 py-1 border-yellow-400 outline-none rounded"
         />
 
-        <h2 className="font-bold">Links to Add</h2>
+        <h2 className="font-bold text-accent">Links to Add</h2>
         <div className="flex flex-col gap-2">
           {links.map((link, index) => (
             <div key={index} className="flex gap-2">
               <input
-                className="w-full border px-2 py-1 border-blue-600 outline-none rounded"
+                className="w-full border px-2 py-1 border-yellow-400 outline-none rounded"
                 type="text"
                 placeholder="Link title"
                 value={link.title}
@@ -128,12 +133,19 @@ function Form({ setIsUpdate }) {
                 }
               />
               <input
-                className="w-full border px-2 py-1 border-blue-600 outline-none rounded"
+                className="w-full border px-2 py-1 border-yellow-400 outline-none rounded"
                 type="text"
                 placeholder="URL"
                 value={link.url}
                 onChange={(e) => handleLinkChange(index, "url", e.target.value)}
               />
+              <button
+                className="text-gradient"
+                title="remove link"
+                onClick={() => removeLink(index)}
+              >
+                ✖️
+              </button>
             </div>
           ))}
         </div>
@@ -144,7 +156,7 @@ function Form({ setIsUpdate }) {
           Add Link
         </button>
         <button onClick={submitForm} className="btn btn-sm">
-          Submit
+          Create
         </button>
       </div>
     </div>
