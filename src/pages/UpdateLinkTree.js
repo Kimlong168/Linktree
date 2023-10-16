@@ -122,6 +122,7 @@ const UpdateLinkTree = ({ postList, setIsUpdate }) => {
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
+            rows={4}
             className="border px-2 py-1 border-yellow-400 outline-none rounded"
           />
 

@@ -70,7 +70,7 @@ const Profile = ({ isAuth, signUserOut, postList, setIsUpdate }) => {
                   onCopy={() => setCopy(true)}
                 >
                   <span className="text-center btn btn-sm cursor-pointer flex items-center justify-center gap-2">
-                    Copy the link of this link tree
+                    Copy this link tree
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

@@ -5,7 +5,7 @@ import { MdMailOutline } from 'react-icons/md';
 import { RiCloseCircleLine } from 'react-icons/ri'; 
 
 const IconSelector = ({ title }) => {
-  const lowerCaseTitle = title.toLowerCase();
+  const lowerCaseTitle = title.toLowerCase().trim();
   const iconMapping = {
     twitter: FaTwitter,
     facebook: FaFacebook,

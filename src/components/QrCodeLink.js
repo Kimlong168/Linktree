@@ -19,27 +19,28 @@ const QrCodeLink = ({ url, name }) => {
     <div>
       <div className="flex flex-col justify-center items-center gap-5 pt-4">
         {showQrCode && (
-          <div>
+          <div className="flex flex-col justify-center items-center">
             <div
               className={`w-[145px] py-[10px] mx-auto flex flex-col justify-center items-center bg-white rounded`}
               id="qrcode"
             >
               <QRCode size={125} value={url} />
+              <small className="mt-2 font-semibold text-white bg-black w-full text-center py-1">{name.toUpperCase()}</small>
             </div>
 
             <button
               onClick={downloadQr}
-              className="text-green-600 font-bold py-2 px-4 rounded-full inline-flex items-center mt-3 border border-green-600"
+              className=" text-white bg-green-600 font-bold py-2 px-4 rounded-full inline-flex items-center mt-3 border border-white/30"
             >
               <svg
                 className="w-4 h-4 mr-2"
-                fill="green"
+                fill="white"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
                 <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
               </svg>
-              <span> Download Qrcode</span>
+              <span>Download</span>
             </button>
           </div>
         )}
